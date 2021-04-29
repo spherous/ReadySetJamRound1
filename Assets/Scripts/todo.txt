@@ -1,0 +1,16 @@
+Parking spots
+    Sprite
+Cars
+    Sprite
+    Enter lot
+    Drive to empty space
+    Park in empty space
+    Wait for a bit
+    Leave spaces
+    Leave lot
+    Cart snake colliding with car = loss
+
+Poeple?
+    leave/take carts
+
+Maybe only allow carts to be collected from the back side (Dot prod?)
