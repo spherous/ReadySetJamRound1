@@ -1,38 +1,81 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class CollectableSpawner : MonoBehaviour
 {
-    // [SerializeField] private List<Sprite> sprites = new List<Sprite>();
-
     [SerializeField] private GameObject collectablePrefab;
-
     [SerializeField] private float spawnSpeed;
     private float spawnTime = 0;
+    public int prewarmAmount;
+    public LayerMask mask;
+
+    private void Start() {
+        for(int i = 0; i < prewarmAmount; i++)
+            SpawnCollectableRandom();
+    }
 
     private void Update()
     {
         if(Time.timeSinceLevelLoad > spawnTime)
         {
             spawnTime = Time.timeSinceLevelLoad + spawnSpeed;
-            SpawnCollectable();
+            SpawnCollectableRandom();
         }
     }
 
-    private void SpawnCollectable()
+    public void SpawnCollectableRandom()
     {
-        GameObject newCollectable = Instantiate(collectablePrefab, 
-            new Vector3(
-                Random.Range(-10f, 10f), 
-                Random.Range(-6f, 6f), 
-                0f
-            ), Quaternion.Euler(0, 0, Random.Range(0, 360))
+        Vector3 spawnAtPos = new Vector3(
+            Random.Range(-9f, 9f), 
+            Random.Range(-5f, 5f), 
+            0f
         );
-        // Change the sprite
-        // newCollectable.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Count - 1)];
-        // randomize the size
-        // newCollectable.transform.localScale *= Random.Range(0.75f, 1.5f);
-        // randomize the value
-        // newCollectable.GetComponent<ICollectable>().growthAmount = Random.Range(1,10);
+
+        Collider2D occupied = Physics2D.OverlapCircle(spawnAtPos, .5f, mask);
+        
+        if(occupied != null)
+        {
+            Transform root = occupied.transform.root;
+            GenericCollectable collectable = root.GetComponent<GenericCollectable>();
+            if(collectable != null)
+            {
+                collectable.Grow();
+                return;
+            }
+        }
+
+        SpawnCart(spawnAtPos);
+    }
+
+    private void SpawnCart(Vector3 spawnAtPos)
+    {
+        GameObject newCollectable = Instantiate(collectablePrefab,
+            spawnAtPos,
+            Quaternion.Euler(0, 0, Random.Range(0, 360))
+        );
+    }
+
+    public void SpawnCollectableNearby(Vector3 position)
+    {
+        Vector3 pos = position + new Vector3(
+            Random.Range(-1f, 1f), 
+            Random.Range(-1f, 1f), 
+            0f
+        );
+        
+        Collider2D occupied = Physics2D.OverlapCircle(pos, .5f, mask);
+        if(occupied != null)
+        {
+            Transform root = occupied.transform.root;
+            GenericCollectable collectable = root.GetComponent<GenericCollectable>();
+            if(collectable != null)
+            {
+                collectable.Grow();
+                return;
+            }
+        }
+
+        SpawnCart(pos);
     }
 }

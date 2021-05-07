@@ -1,16 +1,48 @@
 Parking spots
-    Sprite
+    X Sprite
+    X Cart return
+    X    - Sprite
+    X    - banks points
+    X    - resets snake length
+    X    - increases car spawn rate
 Cars
-    Sprite
-    Enter lot
-    Drive to empty space
-    Park in empty space
-    Wait for a bit
-    Leave spaces
-    Leave lot
-    Cart snake colliding with car = loss
+    X Sprite
+    X Randomize color
+    X Enter lot
+    X Drive to empty space
+    X Park in empty space
+    X    - remove cart from cart return
+    X Wait for a bit
+    X Leave spaces
+    X    - spawn a cart nearby
+    X Leave lot
+    X Cart snake colliding with car = loss
 
-Poeple?
-    leave/take carts
+// Poeple?
+//    leave/take carts
 
-Maybe only allow carts to be collected from the back side (Dot prod?)
+Cart Pusher
+    X - Sprite
+    X - Always be at the rear of the snake
+    X - Make cart offset static, right now, the distance of the carts is based on speed/fps.
+
+X Stop pusher from skipping to front when new cart added. (I think this means just adding to the arrays in segment if they exist already instead of resetting them)
+X Increase lag seconds on each cart proportional to the change in speed when a new cart is picked up.
+
+Menus
+    X - Main Menu
+    X - Lose/end game menu
+    X - Scene transition
+    - logo/main menu/button art
+
+X Maybe only allow carts to be collected from the back side (Dot prod?)
+X Display score in game over panel
+
+X Stack carts that spawn on top of each other
+X    Circle cast where a cart is going to be placed, if any other carts are there, stack the new cart on the existing
+
+head lights/tail lights/orange caddie light
+day/night
+
+Audio
+    honking when cars get close to snake

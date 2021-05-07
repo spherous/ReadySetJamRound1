@@ -99,6 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastPosition: {x: 0, y: 0, z: 0}
   lastRotation: {x: 0, y: 0, z: 0, w: 0}
+  spriteRenderer: {fileID: 2804089194673239491}
+  leader: {fileID: 0}
+  lagSeconds: 0
 --- !u!114 &7622130315561765727
 MonoBehaviour:
   m_ObjectHideFlags: 0

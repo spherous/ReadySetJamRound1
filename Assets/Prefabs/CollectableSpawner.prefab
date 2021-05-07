@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectablePrefab: {fileID: 2804089194673239490, guid: 4ba93c4d644f9f54dae49a0594afea0e, type: 3}
-  spawnSpeed: 1
+  spawnSpeed: 10
+  prewarmAmount: 10
+  mask:
+    serializedVersion: 2
+    m_Bits: 55
