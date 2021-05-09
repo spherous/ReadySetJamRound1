@@ -18,8 +18,6 @@ Cars
     X Leave lot
     X Cart snake colliding with car = loss
 
-// Poeple?
-//    leave/take carts
 
 Cart Pusher
     X - Sprite
@@ -29,20 +27,42 @@ Cart Pusher
 X Stop pusher from skipping to front when new cart added. (I think this means just adding to the arrays in segment if they exist already instead of resetting them)
 X Increase lag seconds on each cart proportional to the change in speed when a new cart is picked up.
 
-Menus
-    X - Main Menu
-    X - Lose/end game menu
-    X - Scene transition
-    - logo/main menu/button art
-
 X Maybe only allow carts to be collected from the back side (Dot prod?)
 X Display score in game over panel
 
 X Stack carts that spawn on top of each other
 X    Circle cast where a cart is going to be placed, if any other carts are there, stack the new cart on the existing
 
-head lights/tail lights/orange caddie light
-day/night
+X head lights/tail lights/orange caddie light
+X day/night
+X Street lights
+X    - turn off during day, turn on at night
 
 Audio
-    honking when cars get close to snake
+    X honking when cars get close to snake
+    X Crash sound
+
+Truck loading section???? (Top left)
+Poeple?
+    leave/take carts
+
+X Trees!!
+X Put roof on layer above.
+X Empssion map? (Headlights/tail lights)
+X Shiny carts? Metallic/specular map?
+X Contour/highlight car hood/trunk
+X Put carts spawned ontop of cart return in cart return
+X Man hole
+X Bigger separate base on street lights, that is under the light.
+X Fade entire stack of carts, rather than just the root cart
+
+Menus
+    X - Main Menu
+    X - Lose/end game menu
+    X - Scene transition
+    - title screen concept art ideas
+        - Job application
+            - start button is an "apply" for job button
+        - Punch clock
+            - Start button is punching the clock, quit is resign
+    - Buttons

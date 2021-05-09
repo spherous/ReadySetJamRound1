@@ -43,6 +43,13 @@ public class CollectableSpawner : MonoBehaviour
                 collectable.Grow();
                 return;
             }
+            CartReturn cartReturn = root.GetComponent<CartReturn>();
+            if(cartReturn != null)
+            {
+                Debug.Log(cartReturn.name);
+                cartReturn.AddCarts(1, true);
+                return;
+            }
         }
 
         SpawnCart(spawnAtPos);
@@ -72,6 +79,13 @@ public class CollectableSpawner : MonoBehaviour
             if(collectable != null)
             {
                 collectable.Grow();
+                return;
+            }
+            CartReturn cartReturn = root.GetComponent<CartReturn>();
+            if(cartReturn != null)
+            {
+                Debug.Log(cartReturn.name);
+                cartReturn.AddCarts(1, true);
                 return;
             }
         }

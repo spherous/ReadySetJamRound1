@@ -99,6 +99,7 @@ MonoBehaviour:
   audioSource: {fileID: 1815284159454810790}
   cartRollingSource: {fileID: 3867540159376683428}
   loadingClip: {fileID: 8300000, guid: 862249a11735c4b419040cb2622d8584, type: 3}
+  crashClip: {fileID: 8300000, guid: f050f0e0584f77d44abb60f1e0da2a9a, type: 3}
   segmentPrefab: {fileID: 2804089194673239490, guid: ba80f559b6ba28d4590bbdecaf9484f3, type: 3}
   cartPusherPrefab: {fileID: 2804089194673239490, guid: 2cf21fe3f0b364d45b0d19dbf5b5787e, type: 3}
   defaultSpeed: 2.5
@@ -106,7 +107,6 @@ MonoBehaviour:
   speed: 0
   turnSpeed: 0
   cartOffset: 0.1
-  lastPosition: {x: 0, y: 0, z: 0}
 --- !u!82 &3867540159376683428
 AudioSource:
   m_ObjectHideFlags: 0

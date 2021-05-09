@@ -15,31 +15,37 @@ public class Segment : MonoBehaviour
     int oldestIndex;
     int newestIndex;
 
+    public bool follow = true;
+
     private void FixedUpdate()
     {
-        if (lagSeconds == 0)
+        if(lagSeconds == 0)
         {
             transform.position = leader.position;
             transform.rotation = leader.rotation;
             return;
         }
 
-        int newIndex = (newestIndex + 1) % positionBuffer.Length;
-        if(newIndex != oldestIndex)
-            newestIndex = newIndex;
+        if(follow)
+        {
+            int newIndex = (newestIndex + 1) % positionBuffer.Length;
+            if(newIndex != oldestIndex)
+                newestIndex = newIndex;
 
-        timeBuffer[newestIndex] = Time.time;
-        float targetTime = Time.time - lagSeconds;
-        int nextIndex;
-        while(timeBuffer[nextIndex = (oldestIndex + 1) % timeBuffer.Length] < targetTime)
-            oldestIndex = nextIndex;
+            timeBuffer[newestIndex] = Time.time;
+            float targetTime = Time.time - lagSeconds;
+            int nextIndex;
+            while(timeBuffer[nextIndex = (oldestIndex + 1) % timeBuffer.Length] < targetTime)
+                oldestIndex = nextIndex;
 
-        float span = timeBuffer[nextIndex] - timeBuffer[oldestIndex];
-        float progress = span > 0f
-            ? (targetTime - timeBuffer[oldestIndex]) / span
-            : 0f;
-        UpdatePosition(nextIndex, progress);
-        UpdateRotation(nextIndex, progress);
+            float span = timeBuffer[nextIndex] - timeBuffer[oldestIndex];
+            float progress = span > 0f
+                ? (targetTime - timeBuffer[oldestIndex]) / span
+                : 0f;
+                
+            UpdatePosition(nextIndex, progress);
+            UpdateRotation(nextIndex, progress);
+        }
     }
 
     private void UpdateRotation(int nextIndex, float progress)

@@ -9,6 +9,7 @@ public class SnakeData : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource cartRollingSource;
     public AudioClip loadingClip;
+    public AudioClip crashClip;
 
     public delegate void OnSizeChanged(int size);
     public OnSizeChanged onSizeChanged;
@@ -33,7 +34,7 @@ public class SnakeData : MonoBehaviour
 
     public float cartOffset;
 
-    public Vector3 lastPosition;
+
 
     private void Awake() {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -132,8 +133,11 @@ public class SnakeData : MonoBehaviour
     {    
         if(other.gameObject.TryGetComponent<ICollectable>(out ICollectable collectable))
         {
+
             // Carts must be picked up from roughly behind
-            if(Vector3.Dot(transform.up, other.transform.up) >= 1f/3f)
+            float forwardDot = Vector3.Dot(transform.up, other.transform.up);
+            float dirDot = Vector3.Dot(other.transform.position - transform.position, other.transform.up);
+            if(dirDot >= 2f/3f && forwardDot >= 1f/3f)
             {
                 AddSegment(collectable.growthAmount);
                 audioSource.PlayOneShot(loadingClip);
@@ -144,16 +148,29 @@ public class SnakeData : MonoBehaviour
         }
         else if(other.gameObject.TryGetComponent<LoseGameOnCollision>(out LoseGameOnCollision loseGame))
         {
-            Debug.Log($"Ran into {other.name}");
+            if(other.gameObject == cartPusher.gameObject)
+                return;
+
+            // Debug.Log($"Ran into {other.name}");
             Crashed();
         }
     }
 
     public void Crashed()
     {
+        if(!cartPusher.follow)
+            return;
+
+        audioSource.PlayOneShot(crashClip);
         cartRollingSource.Stop();
+        
         speed = 0;
         rigidbody2D.velocity = Vector3.zero;
+
+        foreach(Segment segment in segments)
+            segment.follow = false;
+        cartPusher.follow = false;
+        
         gm.LoseGame();
     }
 }

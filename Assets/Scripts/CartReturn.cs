@@ -24,20 +24,21 @@ public class CartReturn : MonoBehaviour
         if(snake == null)
             return;
 
-        audioSource.Play();
         snake.transform.up *= -1;
-
         int segCount = snake.TakeAllSegments();
+        audioSource.Play();
 
         if(segCount == 0)
             return;
 
-        bankedScore.Inc(segCount);
-        AddCarts(segCount);
+        AddCarts(segCount, true);
     }
 
-    public void AddCarts(int cartCount)
+    public void AddCarts(int cartCount, bool addPoints = false)
     {
+        if(addPoints)
+            bankedScore.Inc(cartCount);
+
         for(int i = 0; i < cartCount; i++)
         {
             GameObject lastCart = null;

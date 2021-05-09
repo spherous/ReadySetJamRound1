@@ -15,6 +15,8 @@ public class GenericCollectable : MonoBehaviour, ICollectable
     [SerializeField] private DynamicGridObstacle obstacle;
     List<DynamicGridObstacle> obstacles = new List<DynamicGridObstacle>();
 
+    List<SpriteRenderer> childRenderers = new List<SpriteRenderer>();
+
     private void Awake()
     {
         obstacles.Add(obstacle);
@@ -35,8 +37,11 @@ public class GenericCollectable : MonoBehaviour, ICollectable
         else
         {
             Color color = spriteRenderer.color;
-            color.a = Mathf.Lerp(0f, 1f, (destoryAtTime - Time.timeSinceLevelLoad) / timeTillDestroy);
+            float t = (destoryAtTime - Time.timeSinceLevelLoad) / timeTillDestroy;
+            color.a = Mathf.Lerp(0f, 1f, t);
             spriteRenderer.color = color;
+            foreach(SpriteRenderer childRenderer in childRenderers)
+                childRenderer.color = color;
         }
     }
 
@@ -44,6 +49,10 @@ public class GenericCollectable : MonoBehaviour, ICollectable
     {
         GameObject newCart = Instantiate(cartPrefab, transform.position + (-transform.up * growthAmount * 0.15f), transform.rotation, transform.root);
         SpriteRenderer newSprite = newCart.GetComponent<SpriteRenderer>();
+        Color color = newSprite.color;
+        color.a = Mathf.Lerp(0f, 1f, (destoryAtTime - Time.timeSinceLevelLoad) / timeTillDestroy);
+        newSprite.color = color;
+        childRenderers.Add(newSprite);
         obstacles.Add(newCart.GetComponentInChildren<DynamicGridObstacle>());
         newSprite.sortingOrder = growthAmount * -1;
         enableObstacleTime = Time.timeSinceLevelLoad + 2;
