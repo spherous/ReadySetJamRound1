@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Leafs URP
-  m_Shader: {fileID: 4800000, guid: 42e0f16c77d25144ea2348ca1a254645, type: 3}
+  m_Shader: {fileID: 4800000, guid: f0aeae16a3c7c714aa58c0f15a84121f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: bdcffb5968b084b4490b00efe97041e3, type: 3}
+        m_Texture: {fileID: 2800000, guid: ba1f3d7b94c96ce4ba785b98c6321d0b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8b0017825887ee44e83ac0cb49ceadf0, type: 3}
+        m_Texture: {fileID: 2800000, guid: b5dc5d711f245564695fdaf06099d672, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -55,7 +55,7 @@ Material:
     - _Value: 1
     - _WindModeLeaves: 0
     m_Colors:
-    - _Color: {r: 0.07895684, g: 0.07895684, b: 0.07895684, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _TranslucencyTint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
