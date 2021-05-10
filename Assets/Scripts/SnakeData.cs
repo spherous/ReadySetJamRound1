@@ -140,6 +140,7 @@ public class SnakeData : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {    
+        Debug.Log($"Ran into {other.name}");
         if(other.gameObject.TryGetComponent<ICollectable>(out ICollectable collectable))
         {
 
@@ -160,7 +161,11 @@ public class SnakeData : MonoBehaviour
             if(other.gameObject == cartPusher.gameObject)
                 return;
 
-            // Debug.Log($"Ran into {other.name}");
+
+            if(segments.Count > 1 && other.gameObject == segments[0].gameObject)
+                return;
+            if(segments.Count > 2 && other.gameObject == segments[1].gameObject)
+                return;
             Crashed();
         }
     }

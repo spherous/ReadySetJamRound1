@@ -11,7 +11,6 @@ public class Phone : MonoBehaviour
     [SerializeField] private TextMeshProUGUI respondText;
     [SerializeField] private TextMeshProUGUI responseText;
     [SerializeField] private GameManager gameManager;
-
     public Vector3 downPos;
     public float waitDuration;
     private float? waitUntilTime = null;

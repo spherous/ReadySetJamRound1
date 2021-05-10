@@ -15,13 +15,21 @@ public class DayNightCycle : MonoBehaviour
 
     public List<Material> treeMat = new List<Material>();
 
+    public bool cycle = false;
+
     private void Awake() {
         foreach(StreetLight light in streetLights)
             light.OffImmediate();
+        
+        foreach(Material mat in treeMat)
+            mat.SetColor("_Color", Color.white);
     }
 
     private void Update()
     {
+        if(!cycle)
+            return;
+
         ellapsedDuration += Time.deltaTime;
         float startVal = becomingDay ? 0 : 1;
         float endVal = becomingDay ? 1 : 0;

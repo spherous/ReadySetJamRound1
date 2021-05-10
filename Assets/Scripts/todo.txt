@@ -47,6 +47,7 @@ Car types - have a chance to park in the wrong spot, maybe player need to give t
     Handicapped
     EV
     Truck loading section???? (Top left)
+    Scared Car power up
 Poeple?
     leave/take carts
 
@@ -59,10 +60,10 @@ X Put carts spawned ontop of cart return in cart return
 X Man hole
 X Bigger separate base on street lights, that is under the light.
 X Fade entire stack of carts, rather than just the root cart
-Box around cart return to draw attention
+X Box around cart return to draw attention
     - unlit
     - shrinks/grows while the player has carts
-Cell phone Sprite
+X Cell phone Sprite
     boss texts at start of game instructions
     game starts when player presses okay
     phone slides off screen down
@@ -71,9 +72,7 @@ Menus
     X - Main Menu
     X - Lose/end game menu
     X - Scene transition
-    - title screen concept art ideas
-        - Job application
-            - start button is an "apply" for job button
-        - Punch clock
-            - Start button is punching the clock, quit is resign
-    - Buttons
+    X - Buttons
+
+   
+

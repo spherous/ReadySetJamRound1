@@ -19,11 +19,10 @@ public class SceneTransition : MonoBehaviour
         if(existingSTs.Length > 1)
             Destroy(gameObject);
 
+        DontDestroyOnLoad(gameObject);
         group.alpha = 0;
         group.interactable = false;
         group.blocksRaycasts = false;
-        DontDestroyOnLoad(gameObject);
-
     } 
 
     private void Update() {

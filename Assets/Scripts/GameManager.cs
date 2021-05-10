@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField] public FlashyBox box;
+    [SerializeField] private DayNightCycle dayNightCycle;
 
     // [SerializeField] private AudioSource audioSource;
 
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
         snake.pickedUpCart += PickedUpCarts;
         snake.empiedCarts += EmptiedCarts;
         carSpawner.gameObject.SetActive(true);
+        dayNightCycle.cycle = true;
     }
 
     private void EmptiedCarts()
