@@ -6,6 +6,11 @@ public class SnakeData : MonoBehaviour
 {
     GameManager gm => GameManager.Instance;
 
+    public delegate void PickedUpCart();
+    public PickedUpCart pickedUpCart;
+    public delegate void EmpiedCarts();
+    public EmpiedCarts empiedCarts;
+
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource cartRollingSource;
     public AudioClip loadingClip;
@@ -89,6 +94,8 @@ public class SnakeData : MonoBehaviour
 
             onSizeChanged?.Invoke(segments.Count);
         }
+
+        pickedUpCart?.Invoke();
     }
 
     public void UpdateSnake()
@@ -125,6 +132,8 @@ public class SnakeData : MonoBehaviour
         turnSpeed = defaultTurnSpeed;
 
         cartPusher.SetLag(0);
+
+        empiedCarts?.Invoke();
 
         return segCount;
     }

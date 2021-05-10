@@ -424,6 +424,9 @@ MonoBehaviour:
   longBeepBeep: {fileID: 8300000, guid: e9b81d374471eff41bfda67cc7418ac5, type: 3}
   beep: {fileID: 8300000, guid: 391aa634277040c408c371797853ea5c, type: 3}
   wail: {fileID: 8300000, guid: 31c13eb722b4d3742b6388b6f5a0db44, type: 3}
+  baseAlternates:
+  - {fileID: 21300000, guid: 99503f73551c0b54bac137f6574fdba0, type: 3}
+  - {fileID: 21300000, guid: 06da8b697b9e6764aaa5bc064c7fdf4f, type: 3}
 --- !u!50 &4504717210291976492
 Rigidbody2D:
   serializedVersion: 4

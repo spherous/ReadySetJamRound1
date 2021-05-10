@@ -9,11 +9,11 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Car : MonoBehaviour
 {
     [SerializeField] private HonkDetector honkDetectorPrefab;
+    private HonkDetector honkDetector;
     [SerializeField] private AIPath ai;
     [SerializeField] private SpriteRenderer carBase;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private SpriteRenderer lightsRenderer;
-
     public Material onLightsMat;
     public Material offLightsMat;
 
@@ -42,6 +42,10 @@ public class Car : MonoBehaviour
 
     ParkingSpot spot;
 
+    private bool destroy = false;
+
+    public List<Sprite> baseAlternates = new List<Sprite>();
+
     private void Awake() 
     {
         allSpots = GameObject.FindObjectOfType<ParkingSpots>();
@@ -52,22 +56,28 @@ public class Car : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        
         snake = GameObject.FindObjectOfType<SnakeData>();
 
         ai.destination = spot.transform.position;
         spot.inUse = true;
         ai.maxSpeed = Extensions.RandomRange(speedRange);
 
+        carBase.sprite = baseAlternates[UnityEngine.Random.Range(0, baseAlternates.Count)];
         carBase.color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
 
-        HonkDetector honkDetector = Instantiate(honkDetectorPrefab, transform.position, transform.rotation);
+        honkDetector = Instantiate(honkDetectorPrefab, transform.position, transform.rotation);
         honkDetector.car = this;
     }
     
     private void Update() 
     {
-        if(ai.reachedDestination && leaveAtTime == null)
+        if(destroy)
+        {
+            Destroy(honkDetector.gameObject);
+            Destroy(gameObject);
+        }
+        else if(ai.reachedDestination && leaveAtTime == null)
             ArrivedAtParkingSpot();
         else if(Time.timeSinceLevelLoad >= primeLeaveAtTime && !leaving && !lightsOn)
             TurnCarOn();
@@ -79,17 +89,17 @@ public class Car : MonoBehaviour
 
     public void Honk()
     {
-        if(leaveAtTime == null || leaving)
+        if(!leaveAtTime.HasValue || leaving)
         {
             if(Time.timeSinceLevelLoad >= honkCDRemoveTime)
             {
-                if(ai.maxSpeed <= 1.5f && shortBeepBeep)
+                if(ai.maxSpeed <= 1.5f && shortBeepBeep != null)
                     audioSource?.PlayOneShot(shortBeepBeep);
-                else if(ai.maxSpeed <= 2f && longBeepBeep)
+                else if(ai.maxSpeed <= 2f && longBeepBeep != null)
                     audioSource?.PlayOneShot(longBeepBeep);
-                else if(ai.maxSpeed <= 2.5f && beep)
+                else if(ai.maxSpeed <= 2.5f && beep != null)
                     audioSource?.PlayOneShot(beep);
-                else if(wail)
+                else if(wail != null)
                     audioSource?.PlayOneShot(wail);
                 
                 honkCDRemoveTime = Time.timeSinceLevelLoad + UnityEngine.Random.Range(2f, 4f);
@@ -132,7 +142,7 @@ public class Car : MonoBehaviour
     }
 
     // Screw the GC
-    public void ExitsLot() => Destroy(gameObject);
+    public void ExitsLot() => destroy = true;
 
     private void OnTriggerEnter2D(Collider2D other) {
         // Debug.Log($"{name} collided with {other.name}");

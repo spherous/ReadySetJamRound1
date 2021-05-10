@@ -42,7 +42,11 @@ Audio
     X honking when cars get close to snake
     X Crash sound
 
-Truck loading section???? (Top left)
+Car types - have a chance to park in the wrong spot, maybe player need to give them a citation or have them towed??
+    Normal
+    Handicapped
+    EV
+    Truck loading section???? (Top left)
 Poeple?
     leave/take carts
 
@@ -55,6 +59,13 @@ X Put carts spawned ontop of cart return in cart return
 X Man hole
 X Bigger separate base on street lights, that is under the light.
 X Fade entire stack of carts, rather than just the root cart
+Box around cart return to draw attention
+    - unlit
+    - shrinks/grows while the player has carts
+Cell phone Sprite
+    boss texts at start of game instructions
+    game starts when player presses okay
+    phone slides off screen down
 
 Menus
     X - Main Menu

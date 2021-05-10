@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [SerializeField] public FlashyBox box;
 
     // [SerializeField] private AudioSource audioSource;
 
@@ -24,8 +26,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        snake = Instantiate(snakePrefab).GetComponent<SnakeData>();
-        collectableSpawner = Instantiate(collectableSpawnerPrefab).GetComponent<CollectableSpawner>();
         Time.timeScale = 1;
         Application.targetFrameRate = 60;
     }
@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(snake == null)
+            return;
         // Game is over, don't allow input
         if(endGameUI.activeSelf)
             return;
@@ -45,11 +47,35 @@ public class GameManager : MonoBehaviour
         snake.UpdateSnake();
     }
 
+    public void StartGame()
+    {
+        collectableSpawner = Instantiate(collectableSpawnerPrefab).GetComponent<CollectableSpawner>();
+        snake = Instantiate(snakePrefab).GetComponent<SnakeData>();
+        snake.pickedUpCart += PickedUpCarts;
+        snake.empiedCarts += EmptiedCarts;
+        carSpawner.gameObject.SetActive(true);
+    }
+
+    private void EmptiedCarts()
+    {
+        box.flashing = false;
+    }
+
+    private void PickedUpCarts()
+    {
+        box.flashing = true;
+    }
+
     public void LoseGame()
     {
         Debug.Log("Lose Game");
         carSpawner.gameObject.SetActive(false);
         collectableSpawner.gameObject.SetActive(false);
         endGameUI.SetActive(true);
+    }
+
+    private void OnDestroy() {
+        snake.pickedUpCart -= PickedUpCarts;
+        snake.empiedCarts -= EmptiedCarts;    
     }
 }
