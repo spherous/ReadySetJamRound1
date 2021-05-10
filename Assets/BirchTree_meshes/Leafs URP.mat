@@ -10,7 +10,7 @@ Material:
   m_Name: Leafs URP
   m_Shader: {fileID: 4800000, guid: f0aeae16a3c7c714aa58c0f15a84121f, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -34,28 +34,28 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _BumpScale: 1
-    - _ColorShifting: 1
+    - _ColorShifting: 0
     - _ColorSource: 0
-    - _ColorVariation: 0.15
+    - _ColorVariation: 0.169
     - _CullMode: 0
     - _Cutoff: 0.5
     - _DoubleSidedNormalMode: 0
     - _GlobalTurbulenceInfluence: 1
     - _GlobalWindInfluence: 1
     - _Glossiness: 0
-    - _Hue: -0.5
+    - _Hue: -0.01
     - _Metallic: 0
     - _OcclusionStrength: 0.6
-    - _Saturation: 1
+    - _Saturation: 0.75
     - _TransNormalDistortion: 1
     - _TransScale: 1
     - _TransScattering: 1
-    - _Translucency: 4
+    - _Translucency: 49
     - _TranslucencyEnum: 1
-    - _Value: 1
+    - _Value: 1.24
     - _WindModeLeaves: 0
     m_Colors:
-    - _Color: {r: 0.2733776, g: 0.2733776, b: 0.2733776, a: 1}
+    - _Color: {r: 0.9655499, g: 0.9655499, b: 0.9655499, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _TranslucencyTint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

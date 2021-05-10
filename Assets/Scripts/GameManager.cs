@@ -75,7 +75,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void OnDestroy() {
-        snake.pickedUpCart -= PickedUpCarts;
-        snake.empiedCarts -= EmptiedCarts;    
+        if(snake != null)
+        {
+            snake.pickedUpCart -= PickedUpCarts;
+            snake.empiedCarts -= EmptiedCarts;    
+        }
     }
 }
