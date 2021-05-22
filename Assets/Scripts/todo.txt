@@ -1,3 +1,5 @@
+
+--- ROUND 1 ---
 Parking spots
     X Sprite
     X Cart return
@@ -42,15 +44,6 @@ Audio
     X honking when cars get close to snake
     X Crash sound
 
-Car types - have a chance to park in the wrong spot, maybe player need to give them a citation or have them towed??
-    Normal
-    Handicapped
-    EV
-    Truck loading section???? (Top left)
-    Scared Car power up
-Poeple?
-    leave/take carts
-
 X Trees!!
 X Put roof on layer above.
 X Empssion map? (Headlights/tail lights)
@@ -74,5 +67,34 @@ Menus
     X - Scene transition
     X - Buttons
 
-   
+X Tone down tail lights a bit
+X Enter to send text + navigate retry + quit buttons with up/down, enter confirm.
+X Build
+    - try webgl?
+        - New Input Systen doesn't support
 
+--- ROUND 2 ---
+X Have cars slow down when near player (but not stop)
+Pacman powerup
+    X Reflect off of something that would normally cause you to lose
+    X FX
+    X Lasts some amount of seconds
+    X     blink before fading
+    X Cars flee from the snake
+Make concrete look less like a wall
+No parking red lines
+Cars should back out of spaces, rather than pivot 180 degrees
+Audio Controls
+More maps
+
+
+--- CONCEPTS --- 
+Car types - have a chance to park in the wrong spot, maybe player need to give them a citation or have them towed??
+    Normal
+    Handicapped
+    EV
+    Truck loading section???? (Top left)
+    Scared Car power up
+Poeple?
+    leave/take carts
+Turbo mode

@@ -30,7 +30,7 @@ public class SnakeData : MonoBehaviour
     
     [ReadOnly] public float speed;
     [ReadOnly] public float turnSpeed;
-
+    [SerializeField] private BoxCollider2D col2D;
     public new Rigidbody2D rigidbody2D {get; private set;}
 
     private OnHandScore onHandScore;
@@ -38,8 +38,16 @@ public class SnakeData : MonoBehaviour
     private Segment cartPusher;
 
     public float cartOffset;
+    public bool poweredUp {get; private set;} = false;
+    public bool recentlyReflected {get; private set;} = false;
+    private float clearRecentReflectionAtTime;
+    public GameObject reflectedOff {get; private set;} = null;
+    private float powerupUntilTime;
 
-
+    public Material pusherOff;
+    public Material pusherOn;
+    public Material cartOff;
+    public Material cartOn;
 
     private void Awake() {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -70,10 +78,14 @@ public class SnakeData : MonoBehaviour
                 rotation: transform.rotation
             ).GetComponent<Segment>();
 
+
             newSegment.leader = transform;
 
             newSegment.spriteRenderer.sortingOrder = size * -1;
             cartPusher.spriteRenderer.sortingOrder = (size + 1) * -1;
+            if(poweredUp)
+                newSegment.spriteRenderer.material = cartOn;
+                // newSegment.spriteRenderer.material.SetFloat("_HighlightOn", 1);
 
             speed *= 0.95f;
             turnSpeed *= 0.98f;
@@ -104,19 +116,10 @@ public class SnakeData : MonoBehaviour
         {
             segments[i].lastPosition = segments[i].transform.position;
             segments[i].lastRotation = segments[i].transform.rotation;
-
-            // segments[i].transform.position = i != 0 
-            //     ? segments[i - 1].lastPosition
-            //     : transform.position;
-            // segments[i].transform.rotation = i != 0
-            //     ? segments[i - 1].lastRotation
-            //     : transform.rotation;
         }
 
         cartPusher.lastPosition = cartPusher.transform.position;
         cartPusher.lastRotation = cartPusher.transform.rotation;
-        // cartPusher.transform.position = size == 0 ? transform.position : segments[size - 1].lastPosition;
-        // cartPusher.transform.rotation = size == 0 ? transform.rotation : segments[size - 1].lastRotation;
     }
 
     public int TakeAllSegments()
@@ -143,7 +146,6 @@ public class SnakeData : MonoBehaviour
         Debug.Log($"Ran into {other.name}");
         if(other.gameObject.TryGetComponent<ICollectable>(out ICollectable collectable))
         {
-
             // Carts must be picked up from roughly behind
             float forwardDot = Vector3.Dot(transform.up, other.transform.up);
             float dirDot = Vector3.Dot(other.transform.position - transform.position, other.transform.up);
@@ -158,15 +160,44 @@ public class SnakeData : MonoBehaviour
         }
         else if(other.gameObject.TryGetComponent<LoseGameOnCollision>(out LoseGameOnCollision loseGame))
         {
+            // ignore the first few carts and the cart pusher.
             if(other.gameObject == cartPusher.gameObject)
                 return;
-
-
             if(segments.Count > 1 && other.gameObject == segments[0].gameObject)
                 return;
             if(segments.Count > 2 && other.gameObject == segments[1].gameObject)
                 return;
-            Crashed();
+
+            if(!poweredUp && !recentlyReflected && other.gameObject != reflectedOff)
+                Crashed();
+            else
+            {
+                Vector2 origin = transform.position + (-transform.up * 0.2f);
+                RaycastHit2D[] hits = Physics2D.BoxCastAll(origin, col2D.size, transform.rotation.eulerAngles.z, transform.up, 1);
+
+                foreach(RaycastHit2D hit in hits)
+                {
+                    if(hit.collider.TryGetComponent<LoseGameOnCollision>(out LoseGameOnCollision lgoc))
+                    {
+                        if(hit.collider != null && lgoc == loseGame)
+                        {
+                            poweredUp = false;
+
+                            SetHighlights(0);
+
+                            if(!recentlyReflected)
+                            {
+                                recentlyReflected = true;
+                                clearRecentReflectionAtTime = Time.timeSinceLevelLoad + 2;
+                                reflectedOff = hit.collider.gameObject;
+                            }
+                            transform.up = Vector2.Reflect(transform.up, hit.normal);
+                        }
+                    }
+                    else
+                        continue;
+                }
+            }
         }
     }
 
@@ -186,5 +217,40 @@ public class SnakeData : MonoBehaviour
         cartPusher.follow = false;
         
         gm.LoseGame();
+    }
+
+    public void Powerup(float seconds)
+    {
+        if(seconds < 1)
+            return;
+
+        poweredUp = true;
+        powerupUntilTime = Time.timeSinceLevelLoad + seconds;
+
+        SetHighlights(1);
+    }
+
+    private void Update()
+    {
+        if(recentlyReflected && Time.timeSinceLevelLoad >= clearRecentReflectionAtTime)
+        {
+            recentlyReflected = false;
+            reflectedOff = null;
+        }
+        if(poweredUp && Time.timeSinceLevelLoad >= powerupUntilTime)
+        {
+            poweredUp = false;
+            
+            SetHighlights(0);
+        }
+    }
+
+    private void SetHighlights(float val)
+    {
+        // cartPusher.spriteRenderer.material.SetFloat("_HighlightOn", val);
+        cartPusher.spriteRenderer.material = val > 0.5f ? pusherOn : pusherOff;
+        foreach(Segment segment in segments)
+            segment.spriteRenderer.material = val > 0.5f ? cartOn : cartOff;
+            // segment.spriteRenderer.material.SetFloat("_HighlightOn", val);
     }
 }

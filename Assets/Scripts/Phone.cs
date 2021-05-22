@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.InputSystem.InputAction;
 
 public class Phone : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Phone : MonoBehaviour
     private float slideEllapsedDuration = 0;
     bool slidingDown = false;
 
+    bool sent = false;
+
     private void Awake() {
         sendButton.onClick.AddListener(() => {
             image.sprite = phoneSprite2;
@@ -25,6 +28,7 @@ public class Phone : MonoBehaviour
             responseText.gameObject.SetActive(true);
             sendButton.gameObject.SetActive(false);
             waitUntilTime = Time.timeSinceLevelLoad + waitDuration;
+            sent = true;
         });
     }
 
@@ -44,5 +48,13 @@ public class Phone : MonoBehaviour
             waitUntilTime = null;
             slidingDown = true;
         }
+    }
+
+    public void Enter(CallbackContext context)
+    {
+        if(!context.performed || sent)
+            return;
+        
+        sendButton.onClick.Invoke();
     }
 }

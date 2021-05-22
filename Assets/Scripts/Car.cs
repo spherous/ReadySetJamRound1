@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Pathfinding;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -45,6 +46,12 @@ public class Car : MonoBehaviour
     private bool destroy = false;
 
     public List<Sprite> baseAlternates = new List<Sprite>();
+    float defaultMaxSpeed;
+    public float speedAdjustmentTime;
+    float speedAdjustmentEllapsedTime;
+    bool adjustSpeed = false;
+    float targetMaxSpeed;
+    float startMaxSpeed;
 
     private void Awake() 
     {
@@ -61,7 +68,8 @@ public class Car : MonoBehaviour
 
         ai.destination = spot.transform.position;
         spot.inUse = true;
-        ai.maxSpeed = Extensions.RandomRange(speedRange);
+        defaultMaxSpeed = Extensions.RandomRange(speedRange);
+        ai.maxSpeed = defaultMaxSpeed;
 
         carBase.sprite = baseAlternates[UnityEngine.Random.Range(0, baseAlternates.Count)];
         carBase.color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
@@ -85,6 +93,18 @@ public class Car : MonoBehaviour
             ExitSpace();
         else if(ai.reachedDestination && leaving)
             ExitsLot();
+        
+        if(adjustSpeed)
+        {
+            speedAdjustmentEllapsedTime += Time.deltaTime;
+            ai.maxSpeed = Mathf.Lerp(startMaxSpeed, targetMaxSpeed, Mathf.Clamp01(speedAdjustmentEllapsedTime/speedAdjustmentTime));
+
+            if(ai.maxSpeed == targetMaxSpeed)
+            {
+                adjustSpeed = false;
+                speedAdjustmentEllapsedTime = 0;
+            }
+        }
     }
 
     public void Honk()
@@ -146,11 +166,41 @@ public class Car : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         // Debug.Log($"{name} collided with {other.name}");
-        Segment segment = other.GetComponent<Segment>();
-        if(segment != null)
+        if(other.TryGetComponent<Segment>(out Segment segment))
         {
+            SnakeData snake = GameObject.FindObjectOfType<SnakeData>();
+            if(snake != null && snake.recentlyReflected && snake.reflectedOff == gameObject)
+                return;
             // Debug.Log($"Car {name} hit {other.name}");
             snake.Crashed();
+        }
+    }
+
+    public void SlowDown()
+    {
+        startMaxSpeed = defaultMaxSpeed;
+        adjustSpeed = true;
+        speedAdjustmentEllapsedTime = 0;
+        targetMaxSpeed = defaultMaxSpeed * 0.5f;
+    }
+
+    public void SpeedUp()
+    {
+        startMaxSpeed = ai.maxSpeed;
+        adjustSpeed = true;
+        speedAdjustmentEllapsedTime = 0;
+        targetMaxSpeed = defaultMaxSpeed;
+    }
+
+    public void FleeFromSnake(Vector3 snakePos)
+    {
+        if(!leaving && lightsOn && !ai.reachedDestination)
+        {
+            ParkingSpot furthestSpot = allSpots.spots.Where(s => !s.inUse).OrderByDescending(s => (s.transform.position - snakePos).sqrMagnitude).FirstOrDefault();
+            spot.inUse = false;
+            ai.destination = furthestSpot.transform.position;
+            furthestSpot.inUse = true;
+            spot = furthestSpot;
         }
     }
 }

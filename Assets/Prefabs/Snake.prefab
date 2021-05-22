@@ -104,7 +104,12 @@ MonoBehaviour:
   defaultTurnSpeed: 6
   speed: 0
   turnSpeed: 0
+  col2D: {fileID: 5102548747735698710}
   cartOffset: 0.1
+  pusherOff: {fileID: 2100000, guid: 212c39a3e741b8846834c670adfe1a2a, type: 2}
+  pusherOn: {fileID: 2100000, guid: 8b81178624db24e41b04661b842fb701, type: 2}
+  cartOff: {fileID: 2100000, guid: 4fa6946b4f9d10942aa10d808d645040, type: 2}
+  cartOn: {fileID: 2100000, guid: b616fad0ddd2f6c46ad50aa4b91b5239, type: 2}
 --- !u!82 &3867540159376683428
 AudioSource:
   m_ObjectHideFlags: 0

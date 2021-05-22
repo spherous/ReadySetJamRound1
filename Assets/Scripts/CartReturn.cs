@@ -26,6 +26,7 @@ public class CartReturn : MonoBehaviour
 
         snake.transform.up *= -1;
         int segCount = snake.TakeAllSegments();
+        snake.Powerup(segCount * 5);
         audioSource.Play();
 
         if(segCount == 0)

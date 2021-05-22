@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5804832376291260395}
   - component: {fileID: 5804832376291260396}
+  - component: {fileID: 544344647726978685}
   m_Layer: 0
   m_Name: CollectableSpawner
   m_TagString: Untagged
@@ -49,3 +50,17 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 311
+--- !u!114 &544344647726978685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804832376291260397}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f47bd1864bce04fbc0137aa8bb8226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupPrefab: {fileID: 2632262969209959939, guid: 0c573264d3f543d45a08afd9e13b83a3, type: 3}
+  spawnDelay: 1

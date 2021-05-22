@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 13281089}
   - component: {fileID: 13281088}
   - component: {fileID: 13281090}
+  - component: {fileID: 13281091}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -435,6 +436,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1803183450}
+  retryButton: {fileID: 38728308}
+  quitButton: {fileID: 810680389}
+--- !u!114 &13281091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13281086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 58ade70c10c4ff04d9edc60e1d3dba3e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3bdf5250-77d0-4223-a6b7-1d2222a1745f
+    m_ActionName: Keyboard/Mouse/Horizontal[/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 13281090}
+        m_TargetAssemblyTypeName: EndGamePanel, Assembly-CSharp
+        m_MethodName: Enter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7701ac73-afa9-475b-bc88-b30ddac0fd3c
+    m_ActionName: Keyboard/Mouse/Confirm[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 13281090}
+        m_TargetAssemblyTypeName: EndGamePanel, Assembly-CSharp
+        m_MethodName: MakeSelection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f6ce29ae-9e39-43da-824c-a2ad27282773
+    m_ActionName: Keyboard/Mouse/Vertical[/Keyboard/downArrow,/Keyboard/upArrow]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Keyboard/Mouse
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &38728305
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +583,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.11372549, g: 0.41960785, b: 0.8901961, a: 1}
     m_HighlightedColor: {r: 0.30210927, g: 0.52810013, b: 0.8773585, a: 1}
     m_PressedColor: {r: 0.4008989, g: 0.58066714, b: 0.8584906, a: 1}
-    m_SelectedColor: {r: 0.11372549, g: 0.41960785, b: 0.8901961, a: 1}
+    m_SelectedColor: {r: 0.3019608, g: 0.5294118, b: 0.8784314, a: 1}
     m_DisabledColor: {r: 0.11372549, g: 0.41960785, b: 0.8901961, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1278,6 +1347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirchTree (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6799641939890548944, guid: 59e31962cfe5dc645a722f4ff36c39ba, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 76dd32cc7589ba64488a9a24d2e3fbaa, type: 2}
     - target: {fileID: 7781649167171885160, guid: 59e31962cfe5dc645a722f4ff36c39ba, type: 3}
       propertyPath: m_RootOrder
       value: 31
@@ -3462,7 +3535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACAn+voBHlGnwIAAI8FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVNtu2kAQ/RW0zwXZhIbQtxYIaaUkKLTKQ52HwR7jFetday8BEvHvnV0bTJwiJK/nzO2cmfU749JUmFqlF5pn9ypD9q3H/Jl96bXgHe5ho+SKv+HJ55lntvBOEHyewHJF9tiHGVWi1Tz9LjfCO0dkdJLnSpfzbINTZawhcw7CIEFaWR8tyfTeY3t69Cc+5ECn4dif3ug0iXpHOqYoLerW9eTYjwfxTeR/4yag9ncyFVBWmPnm27B4MrgaNqHx1WAYfCVxa9yiQezhVAnBTdMbs4cqcF9VBWr05DMORDX0490L5JvCNi/n2Mc8N2ibXjUcZlyTYnVS9kPVMpZgtnV7ryCcL3M9Ck3VOe8/wf04wLlW5d2pbBz5Erbg6fYJDikYeyHzpXnW9h0HkXYgtrAW+FygfFALrZzMCLTa+VBncDhrX8/MpgWm29Zet9oxuurzsE4z9RyOgfx+Kni5DsKPasNKqKB2WAXUNJqf1HBYFNMoTFbfxR+Dv2FzuVENcMu1sQQ1LKVvb62c9q5sHjTzbJydKi0xmJumK5Qg7GFJaWx3gh3somwHuQV/d5riDXa6Ep2QYG79o6gDLdWuHZbBX66slopLu0LQaXGRzxRqd4+meHRWcIkd5IFUnCop6/Uz/4lbOZ1Diq0SFvfWaZyBhXAHqClak+wylBQNEdIJ4Tcy0PDJ/xIN/3/xKhdAdUUwswclw/X58Hzxm7BxPPu452w8Gt7k4zSPJsPoOr2GPmR5PL6K8nU8AohuvrJwEbgk0UEsa9WaWdEKyZaLpKU/fd96Cw1VuHmZht2Cv5XqYv5c5mqVakT5WGc4k0VNRegbkc0zTjRXaC2XYfnYe8KESreYJedESRB2vrcakjZLwir+qqy3JGwaPmgJO7LjP1BLAwQUAAAICAAAgJ/rRHgELG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0krmJkUWaeXKagaWRgVmyWaJuYkqaobmxQVqSoUliooGFqVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/r6AR5Rp8CAACPBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/rRHgELG0AAAB4AAAACQAkAAAAAAAAAAAAAADsAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAKQDAAAAAA==
+    dataString: UEsDBBQAAAgIAACAn+tI0ls4nwIAAI8FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVNtu2kAQ/RW0zwXZhIbQtxYIaaUkKG6Vh5KHwR7jFetday8BEvHvnV0b7JAiJK/nzOWcmVm/My5NhalVeqF5dq8yZN96zJ/Zl14L3uEeNkom/A1PPs88s4V3guDzBJYrssc+zKgSrebpd7kR3jkio5M8V7qcZxucKmMNmXMQBgnSyvpoSab3HtvToz/xIQc6Dcf+9EanSdQ70jFFaVG3rifHfjyIbyL/GzcBtb+TqYCywsyTb8PiyeBq2ITGV4Nh8JWkrXGLBrGHUyUENw03Zg9V0J5UBWr04jMOJDXw8coL5JvCetrd2Mc8N2gbrhoOM66pY3VS9kPVbSzBbGt6ryCcL3M9CqTqnPef4H4c4Fyr8u5UNo58CVvwdPsEhxSM7bS5a5595O3kDsQW1gKfC5QPaqGVkxmBVjsf6gwOZ+3rWdm0wHTb2muqF0ZXfR7WaaZewzGI308FL9eh8aPakAgVuh1WATWN5icRDotiGtpk9Sz+GPwNm+5GNcAt18YS1LhLT2+tnPaubB565tU4O1VaYjA3pCuUIOxhSWns5QQvsE7ZC+QW/N1pijfY6UpchARz6x9FF9BS7dphGfzlymqpuLQJgk6LTj5TqN09muLRWcElXiAP1MWpkrJeP/OfuMTpHFJsO2Fxb53GGVgId4BI0Zpk3VDqaIiQTgi/kUGGT/6XZPj/i+9yAVRXBDN7UDJcnw/PF78JG8ezj3vOxqPhTT5O82gyjK7Ta+hDlsfjqyhfxyOA6OYrCxeBS2o6iGXdtWZWtEKy1SJp6U/ft95CQxVuXqZht+BvperMn8tcJalGlI91hrNY1FSEvhHZPOMkM0FruQzLx95XTKh0i9nqnGgVGjvfWw2rNsuKVfxVWW9ZsWn4oK3YkR3/AVBLAwQUAAAICAAAgJ/rRHgELG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0krmJkUWaeXKagaWRgVmyWaJuYkqaobmxQVqSoUliooGFqVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/rSNJbOJ8CAACPBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/rRHgELG0AAAB4AAAACQAkAAAAAAAAAAAAAADsAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAKQDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -5430,7 +5503,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8392157, g: 0.14509805, b: 0.14509805, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.26610893, b: 0.26610893, a: 1}
     m_PressedColor: {r: 0.8301887, g: 0.45817018, b: 0.45817018, a: 1}
-    m_SelectedColor: {r: 0.8392157, g: 0.14509805, b: 0.14509805, a: 1}
+    m_SelectedColor: {r: 0.8666667, g: 0.26666668, b: 0.26666668, a: 1}
     m_DisabledColor: {r: 0.8392157, g: 0.14509805, b: 0.14509805, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5599,6 +5672,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6799641939890548944, guid: 59e31962cfe5dc645a722f4ff36c39ba, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 76dd32cc7589ba64488a9a24d2e3fbaa, type: 2}
     - target: {fileID: 7587669047400394117, guid: 59e31962cfe5dc645a722f4ff36c39ba, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -8892,6 +8969,7 @@ GameObject:
   - component: {fileID: 1249824106}
   - component: {fileID: 1249824108}
   - component: {fileID: 1249824109}
+  - component: {fileID: 1249824110}
   m_Layer: 5
   m_Name: Phone
   m_TagString: Untagged
@@ -9083,6 +9161,60 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1249824110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249824104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 58ade70c10c4ff04d9edc60e1d3dba3e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3bdf5250-77d0-4223-a6b7-1d2222a1745f
+    m_ActionName: Keyboard/Mouse/Horizontal[/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1249824108}
+        m_TargetAssemblyTypeName: Phone, Assembly-CSharp
+        m_MethodName: Enter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7701ac73-afa9-475b-bc88-b30ddac0fd3c
+    m_ActionName: Keyboard/Mouse/Confirm[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f6ce29ae-9e39-43da-824c-a2ad27282773
+    m_ActionName: Keyboard/Mouse/Vertical[/Keyboard/downArrow,/Keyboard/upArrow]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Keyboard/Mouse
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1261813437
 GameObject:
   m_ObjectHideFlags: 0
@@ -9142,7 +9274,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 2c30902f3e5bd4949a378863e2b7b0f2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8490566, g: 0.3943457, b: 0.12415449, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

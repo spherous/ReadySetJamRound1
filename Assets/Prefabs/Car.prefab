@@ -818,6 +818,7 @@ MonoBehaviour:
   baseAlternates:
   - {fileID: 21300000, guid: 99503f73551c0b54bac137f6574fdba0, type: 3}
   - {fileID: 21300000, guid: 06da8b697b9e6764aaa5bc064c7fdf4f, type: 3}
+  speedAdjustmentTime: 0.33333
 --- !u!50 &4504717210291976492
 Rigidbody2D:
   serializedVersion: 4
@@ -892,7 +893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 0.41
+  radius: 0.47
   height: 0.67
   repathRate: 0.2
   canSearch: 1

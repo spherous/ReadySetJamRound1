@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2804089194673239489}
   - component: {fileID: 7622130315561765727}
   - component: {fileID: 3926650238809358652}
+  - component: {fileID: 7289651355738491991}
   m_Layer: 0
   m_Name: shoppingCart
   m_TagString: Untagged
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 4fa6946b4f9d10942aa10d808d645040, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2804089194673239491}
   leader: {fileID: 0}
   lagSeconds: 0
+  follow: 1
 --- !u!114 &7622130315561765727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +151,19 @@ PolygonCollider2D:
       - {x: 0.20747699, y: 0.011091553}
       - {x: 0.17952715, y: 0.24311127}
       - {x: 0.18096712, y: 0.3285709}
+--- !u!114 &7289651355738491991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804089194673239490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 7382056172962987931
+  updateError: 0.2
+  checkTime: 0.05
