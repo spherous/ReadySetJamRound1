@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 008a0fc1e29a7f84daae4d83d6d2dcc9
+guid: 0a02cec5d131b46488c2fe44e1e2d078
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6951505112598775527
-    second: SendButton_0
-  - first:
-      213: 4587990216496459790
-    second: SendButton_1
-  - first:
-      213: 8197490211485351792
-    second: SendButton_2
-  - first:
-      213: 3420423655380300472
-    second: SendButton_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -44,7 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -55,11 +43,11 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 16, y: 16, z: 16, w: 16}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -125,91 +113,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: SendButton_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 20
-        width: 36.5
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e603cab115b87060800000000000000
-      internalID: 6951505112598775527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SendButton_1
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 20
-        width: 36.5
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e003d3f2bc0dbaf30800000000000000
-      internalID: 4587990216496459790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SendButton_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 36.5
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 07f73594ae553c170800000000000000
-      internalID: 8197490211485351792
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SendButton_3
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 0
-        width: 36
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b239404139c77f20800000000000000
-      internalID: 3420423655380300472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

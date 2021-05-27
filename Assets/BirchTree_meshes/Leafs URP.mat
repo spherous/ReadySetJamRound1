@@ -55,7 +55,7 @@ Material:
     - _Value: 1.24
     - _WindModeLeaves: 0
     m_Colors:
-    - _Color: {r: 0.17135102, g: 0.17135102, b: 0.17135102, a: 1}
+    - _Color: {r: 0.43397015, g: 0.43397015, b: 0.43397015, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _TranslucencyTint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

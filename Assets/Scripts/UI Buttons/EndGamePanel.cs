@@ -33,10 +33,4 @@ public class EndGamePanel : MonoBehaviour
             retryButton.Select();
         }
     }
-
-    public void Enter(CallbackContext context)
-    {
-        if(selectedButton != null)
-            selectedButton.onClick.Invoke();
-    }
 }

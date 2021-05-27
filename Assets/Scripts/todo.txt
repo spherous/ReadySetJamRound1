@@ -81,11 +81,21 @@ Pacman powerup
     X Lasts some amount of seconds
     X     blink before fading
     X Cars flee from the snake
-Make concrete look less like a wall
-No parking red lines
-Cars should back out of spaces, rather than pivot 180 degrees
-Audio Controls
+    X Clairify mechanic (maybe a bubble or bumper or shield at the front of the snake)
+X Cars should back out of spaces, rather than pivot 180 degrees
+X No parking red lines
+X Make concrete look less like a wall
+X Audio Controls
+X Best Score
+X If a car can't reach it's destination, it should choose a new parking spot nearby, if there are no available spots, it should leave
+    mostly fixed. there are some edge cases still.
 More maps
+    X modulate lanes
+    X modulate lights
+    modulate enter/exit
+Poeple
+    leave/take carts 
+Consider improving the bounce when hitting the cart return, people seem to find the change in direction "jarring"
 
 
 --- CONCEPTS --- 
@@ -95,6 +105,4 @@ Car types - have a chance to park in the wrong spot, maybe player need to give t
     EV
     Truck loading section???? (Top left)
     Scared Car power up
-Poeple?
-    leave/take carts
 Turbo mode

@@ -12,6 +12,7 @@ public class Car : MonoBehaviour
     [SerializeField] private HonkDetector honkDetectorPrefab;
     private HonkDetector honkDetector;
     [SerializeField] private AIPath ai;
+    [SerializeField] private Seeker seeker;
     [SerializeField] private SpriteRenderer carBase;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private SpriteRenderer lightsRenderer;
@@ -52,6 +53,10 @@ public class Car : MonoBehaviour
     bool adjustSpeed = false;
     float targetMaxSpeed;
     float startMaxSpeed;
+    bool reversing = false;
+
+    public List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+    public Transform light2DContainer;
 
     private void Awake() 
     {
@@ -66,7 +71,7 @@ public class Car : MonoBehaviour
         
         snake = GameObject.FindObjectOfType<SnakeData>();
 
-        ai.destination = spot.transform.position;
+        ai.destination = spot.parkingLoc.position;
         spot.inUse = true;
         defaultMaxSpeed = Extensions.RandomRange(speedRange);
         ai.maxSpeed = defaultMaxSpeed;
@@ -85,15 +90,29 @@ public class Car : MonoBehaviour
             Destroy(honkDetector.gameObject);
             Destroy(gameObject);
         }
-        else if(ai.reachedDestination && leaveAtTime == null)
+        if(!ai.reachedDestination && leaveAtTime == null && !reversing && !leaving)
+        {
+            // On our way to parking spot
+            if(seeker.GetCurrentPath().path.Any(node => !node.Walkable))
+            {
+                Debug.Log("invalid path");
+                spot.inUse = false;
+                spot = allSpots.GetRandomEmptySpot();
+                ai.destination = spot.parkingLoc.position;
+                spot.inUse = true;
+            }
+        }
+        else if(ai.reachedDestination && leaveAtTime == null && !reversing)
             ArrivedAtParkingSpot();
-        else if(Time.timeSinceLevelLoad >= primeLeaveAtTime && !leaving && !lightsOn)
+        else if(Time.timeSinceLevelLoad >= primeLeaveAtTime && !leaving && !lightsOn && !reversing)
             TurnCarOn();
-        else if(Time.timeSinceLevelLoad >= leaveAtTime && !leaving)
+        else if(Time.timeSinceLevelLoad >= leaveAtTime && !leaving && !reversing)
             ExitSpace();
-        else if(ai.reachedDestination && leaving)
+        else if(ai.reachedDestination && reversing)
+            EndBackup();
+        else if(ai.reachedDestination && leaving && !reversing)
             ExitsLot();
-        
+
         if(adjustSpeed)
         {
             speedAdjustmentEllapsedTime += Time.deltaTime;
@@ -156,9 +175,29 @@ public class Car : MonoBehaviour
     {
         // When a car leaves, they leave their cart behind near their location
         GameObject.FindObjectOfType<CollectableSpawner>()?.SpawnCollectableNearby(transform.position);
-        ai.destination = allSpots.end.position;
+        // leaving = true;
+        ai.destination = transform.position + (-transform.up * 3f);
+        reversing = true;
+
+        RotateForBackup();
+    }
+
+    private void RotateForBackup()
+    {
+        transform.up *= -1;
+        foreach(SpriteRenderer spriteRenderer in renderers)
+            spriteRenderer.transform.Rotate(Vector3.forward, 180);
+        
+        light2DContainer.Rotate(Vector3.forward, 180);
+    }
+
+    private void EndBackup()
+    {
+        RotateForBackup();
         leaving = true;
+        reversing = false;
         spot.inUse = false;
+        ai.destination = allSpots.end.position;
     }
 
     // Screw the GC
@@ -194,11 +233,11 @@ public class Car : MonoBehaviour
 
     public void FleeFromSnake(Vector3 snakePos)
     {
-        if(!leaving && lightsOn && !ai.reachedDestination)
+        if(!leaving && !reversing && lightsOn && !ai.reachedDestination)
         {
-            ParkingSpot furthestSpot = allSpots.spots.Where(s => !s.inUse).OrderByDescending(s => (s.transform.position - snakePos).sqrMagnitude).FirstOrDefault();
+            ParkingSpot furthestSpot = allSpots.spots.Where(s => !s.inUse).OrderByDescending(s => (s.parkingLoc.position - snakePos).sqrMagnitude).FirstOrDefault();
             spot.inUse = false;
-            ai.destination = furthestSpot.transform.position;
+            ai.destination = furthestSpot.parkingLoc.position;
             furthestSpot.inUse = true;
             spot = furthestSpot;
         }

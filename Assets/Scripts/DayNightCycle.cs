@@ -9,17 +9,27 @@ public class DayNightCycle : MonoBehaviour
     private float ellapsedDuration;
 
     private bool becomingDay = false;
+
+    public Transform streetLightContainer;
     
-    public List<StreetLight> streetLights = new List<StreetLight>();
+    private List<StreetLight> streetLights = new List<StreetLight>();
     private bool streetLightsOn = false;
 
     public List<Material> treeMat = new List<Material>();
 
     public bool cycle = false;
 
-    private void Awake() {
-        foreach(StreetLight light in streetLights)
+    private void Start()
+    {
+        for(int i = 0; i < streetLightContainer.childCount - 1; i++)
+        {
+            StreetLight light = streetLightContainer.GetChild(i).GetComponent<StreetLight>();
             light.OffImmediate();
+            streetLights.Add(light);
+        }
+        
+        // foreach(StreetLight light in streetLights)
+        //     light.OffImmediate();
         
         foreach(Material mat in treeMat)
             mat.SetColor("_Color", Color.white);

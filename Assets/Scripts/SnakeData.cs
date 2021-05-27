@@ -49,7 +49,10 @@ public class SnakeData : MonoBehaviour
     public Material cartOff;
     public Material cartOn;
 
+    [SerializeField] private ParticleSystem bumper;
+
     private void Awake() {
+        bumper.Stop();
         rigidbody2D = GetComponent<Rigidbody2D>();
         onHandScore = GameObject.FindObjectOfType<OnHandScore>();
 
@@ -184,6 +187,7 @@ public class SnakeData : MonoBehaviour
                             poweredUp = false;
 
                             SetHighlights(0);
+                            bumper.Stop();
 
                             if(!recentlyReflected)
                             {
@@ -212,6 +216,8 @@ public class SnakeData : MonoBehaviour
         speed = 0;
         rigidbody2D.velocity = Vector3.zero;
 
+        bumper.Pause();
+
         foreach(Segment segment in segments)
             segment.follow = false;
         cartPusher.follow = false;
@@ -228,6 +234,7 @@ public class SnakeData : MonoBehaviour
         powerupUntilTime = Time.timeSinceLevelLoad + seconds;
 
         SetHighlights(1);
+        bumper.Play();
     }
 
     private void Update()
@@ -240,7 +247,7 @@ public class SnakeData : MonoBehaviour
         if(poweredUp && Time.timeSinceLevelLoad >= powerupUntilTime)
         {
             poweredUp = false;
-            
+            bumper.Stop();
             SetHighlights(0);
         }
     }
