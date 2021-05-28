@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ParkingSpots : MonoBehaviour
 {
-    public Transform start;
-    public Transform end;
+    public List<Transform> start;
+    public List<Transform> end;
     public List<ParkingSpot> spots = new List<ParkingSpot>();
 
     public ParkingSpot GetRandomEmptySpot()
@@ -17,4 +17,7 @@ public class ParkingSpots : MonoBehaviour
             return null;
         return emptySpots.Skip(Random.Range(0,numberOfEmptySpaces)).First();
     }
+
+    public Transform GetRandomStart() => start[UnityEngine.Random.Range(0, start.Count)];
+    public Transform GetRandomEnd() => end[UnityEngine.Random.Range(0, end.Count)];
 }

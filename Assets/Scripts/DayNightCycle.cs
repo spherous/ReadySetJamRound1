@@ -21,7 +21,7 @@ public class DayNightCycle : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < streetLightContainer.childCount - 1; i++)
+        for(int i = 0; i <= streetLightContainer.childCount - 1; i++)
         {
             StreetLight light = streetLightContainer.GetChild(i).GetComponent<StreetLight>();
             light.OffImmediate();

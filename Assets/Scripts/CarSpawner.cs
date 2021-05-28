@@ -14,6 +14,10 @@ public class CarSpawner : MonoBehaviour
     [MinMaxSlider(1, 60, true)]
     public Vector2 carSpawnDelay = new Vector2(5, 10);
 
+    private void Start() {
+        parkingSpots = GameObject.FindObjectOfType<ParkingSpots>();
+    }
+
     private void Update()
     {
         if(Time.timeSinceLevelLoad >= spawnAtTime)    
@@ -23,7 +27,7 @@ public class CarSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnCar() => Instantiate(carPrefab, parkingSpots.start.position, Quaternion.identity);
+    public void SpawnCar() => Instantiate(carPrefab, parkingSpots.GetRandomStart().position, Quaternion.identity);
 
     public void SpeedUp() => carSpawnDelay *= 0.95f;
 }

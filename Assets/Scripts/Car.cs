@@ -93,14 +93,20 @@ public class Car : MonoBehaviour
         if(!ai.reachedDestination && leaveAtTime == null && !reversing && !leaving)
         {
             // On our way to parking spot
-            if(seeker.GetCurrentPath().path.Any(node => !node.Walkable))
-            {
-                Debug.Log("invalid path");
-                spot.inUse = false;
-                spot = allSpots.GetRandomEmptySpot();
-                ai.destination = spot.parkingLoc.position;
-                spot.inUse = true;
-            }
+            // if(seeker.GetCurrentPath().path.Any(node => !node.Walkable))
+            // {
+            //     Debug.Log("invalid path");
+            //     spot.inUse = false;
+            //     spot = allSpots.GetRandomEmptySpot();
+            //     ai.destination = spot.parkingLoc.position;
+            //     spot.inUse = true;
+            // }
+            // else
+            // {
+            //     spot.inUse = false;
+            //     Transform end = allSpots.GetRandomEnd();
+            //     ai.destination = end.position;
+            // }
         }
         else if(ai.reachedDestination && leaveAtTime == null && !reversing)
             ArrivedAtParkingSpot();
@@ -176,7 +182,8 @@ public class Car : MonoBehaviour
         // When a car leaves, they leave their cart behind near their location
         GameObject.FindObjectOfType<CollectableSpawner>()?.SpawnCollectableNearby(transform.position);
         // leaving = true;
-        ai.destination = transform.position + (-transform.up * 3f);
+        NNInfo info = AstarPath.active.GetNearest(transform.position + (-transform.up * 2.5f), NNConstraint.Default);
+        ai.destination = info.position;
         reversing = true;
 
         RotateForBackup();
@@ -184,7 +191,10 @@ public class Car : MonoBehaviour
 
     private void RotateForBackup()
     {
-        transform.up *= -1;
+        // transform.up *= -1;
+        Vector3 rot = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(rot.x, rot.y, rot.z + 180f);
+
         foreach(SpriteRenderer spriteRenderer in renderers)
             spriteRenderer.transform.Rotate(Vector3.forward, 180);
         
@@ -197,7 +207,9 @@ public class Car : MonoBehaviour
         leaving = true;
         reversing = false;
         spot.inUse = false;
-        ai.destination = allSpots.end.position;
+        
+        NNInfo info = AstarPath.active.GetNearest(allSpots.GetRandomEnd().position, NNConstraint.Default);
+        ai.destination = info.position;    
     }
 
     // Screw the GC

@@ -777,10 +777,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5560350568694702907}
   - component: {fileID: 7470273718243235189}
-  - component: {fileID: 4504717210291976492}
   - component: {fileID: 327716527612221467}
   - component: {fileID: 369229539355351592}
   - component: {fileID: 6941678977466111232}
+  - component: {fileID: 4504717210291976492}
   - component: {fileID: 2266474714340858337}
   - component: {fileID: 7143699851820804538}
   m_Layer: 0
@@ -853,27 +853,6 @@ MonoBehaviour:
   - {fileID: 455029139875674827}
   - {fileID: 8517098972415414645}
   light2DContainer: {fileID: 7361826227776380502}
---- !u!50 &4504717210291976492
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5560350568694702905}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!114 &327716527612221467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,7 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 0.47
+  radius: 0.35
   height: 0.67
   repathRate: 0.2
   canSearch: 1
@@ -950,6 +929,27 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!50 &4504717210291976492
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560350568694702905}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!60 &2266474714340858337
 PolygonCollider2D:
   m_ObjectHideFlags: 0

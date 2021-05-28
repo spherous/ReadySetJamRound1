@@ -179,11 +179,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf8020cecf6b7e40bfd8623bb378a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laneRenderer: {fileID: 2330281851098672750}
   inUse: 0
   parkingLoc: {fileID: 2330281851109174352}
   spotType: 0
   handicapped: {fileID: 7957891707822232927}
   EV: {fileID: 5440038611462416100}
+  end1: {fileID: 21300000, guid: 9b2f7c1dabfd6f146aabe6b59037f219, type: 3}
+  end2: {fileID: 21300000, guid: 1c85d1632ac27a6499514cd18cbe7f1b, type: 3}
+  middle: {fileID: 21300000, guid: 3224241636139c44fbfaadc84f9ae9dc, type: 3}
 --- !u!1 &2330281851109174353
 GameObject:
   m_ObjectHideFlags: 0

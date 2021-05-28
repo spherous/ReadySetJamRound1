@@ -14,6 +14,9 @@ public class CartReturn : MonoBehaviour
     public float cartDistance;
     private BankedScore bankedScore;
 
+    public float powerupSecondsPerCart;
+
+    [SerializeField] private Transform startLoc;
     private void Awake() => bankedScore = GameObject.FindObjectOfType<BankedScore>();
 
     private void Start() => AddCarts(10);
@@ -24,9 +27,11 @@ public class CartReturn : MonoBehaviour
         if(snake == null)
             return;
 
-        snake.transform.up *= -1;
+        // snake.transform.up *= -1;
+        snake.transform.SetPositionAndRotation(startLoc.position, startLoc.rotation);
+
         int segCount = snake.TakeAllSegments();
-        snake.Powerup(segCount * 5);
+        snake.Powerup(segCount * powerupSecondsPerCart);
         audioSource.Play();
 
         if(segCount == 0)

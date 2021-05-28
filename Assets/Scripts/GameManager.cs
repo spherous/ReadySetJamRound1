@@ -26,27 +26,35 @@ public class GameManager : SerializedMonoBehaviour
     
     // private float lastIncraseTime;
 
-    [OdinSerialize] public List<List<LightLoc>> lightLocs = new List<List<LightLoc>>();
+    // [OdinSerialize] public List<List<LightLoc>> lightLocs = new List<List<LightLoc>>();
+    public List<Map> maps = new List<Map>();
 
     private float horizontalInput;
     public Transform lightContainer;
     [SerializeField] private GameObject streetLightPrefab;
+    [SerializeField] private AstarPath aStar;
+    [SerializeField] private Transform startLoc;
 
     private void Awake()
     {
         Instance = this;
         Time.timeScale = 1;
         Application.targetFrameRate = 60;
-        SpawnLights();
+        Map map = maps[UnityEngine.Random.Range(0, maps.Count)];
+        SpawnLights(map.lightLocs);
+        SpawnParkingSpots(map.parkingSpotsPrefab);
     }
 
-    private void SpawnLights()
+    private void SpawnParkingSpots(GameObject parkingSpotsPrefab)
     {
-        List<LightLoc> locs = lightLocs.First();
+        Instantiate(parkingSpotsPrefab);
+        aStar.Scan();
+    }
+
+    private void SpawnLights(List<LightLoc> locs)
+    {
         foreach(LightLoc loc in locs)
-        {
             Instantiate(streetLightPrefab, loc.pos, Quaternion.Euler(0, 0, loc.zrot), lightContainer);
-        }
     }
 
     public void Input(CallbackContext context) => horizontalInput = context.ReadValue<float>();
@@ -69,7 +77,7 @@ public class GameManager : SerializedMonoBehaviour
     public void StartGame()
     {
         collectableSpawner = Instantiate(collectableSpawnerPrefab).GetComponent<CollectableSpawner>();
-        snake = Instantiate(snakePrefab).GetComponent<SnakeData>();
+        snake = Instantiate(snakePrefab, startLoc.position, startLoc.rotation).GetComponent<SnakeData>();
         snake.pickedUpCart += PickedUpCarts;
         snake.empiedCarts += EmptiedCarts;
         carSpawner.gameObject.SetActive(true);
